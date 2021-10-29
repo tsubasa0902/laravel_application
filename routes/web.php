@@ -20,4 +20,3 @@ Route::get('sample', 'SampleController@index')->name('sample');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
