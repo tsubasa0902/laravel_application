@@ -17,7 +17,8 @@ class PostController extends Controller
     }
 
     public function create(){
-        return view('posts.create');
+        dd('投稿画面だよ！！');
+        //return view('posts.create');
     }
 
     public function store(PostRequest $request) 
@@ -41,13 +42,15 @@ class PostController extends Controller
     }
 
     public function edit($id){
-
+        
         $post = Post::findOrFail($id);
 
         if ($post->user_id !== Auth::id()){
-            return redirect('/');
+            //return redirect('/');
         }
-        return view('posts.edit',['post' => $post]);
+        //return view('posts.edit',['post' => $post]);
+
+        dd($post);
     }
 
     public function update(PostRequest $request,$id){
