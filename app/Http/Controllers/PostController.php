@@ -39,4 +39,31 @@ class PostController extends Controller
 
         return view('posts.show',['post' => $post]);
     }
+
+    public function edit($id){
+
+        $post = Post::findOrFail($id);
+
+        if ($post->user_id !== Auth::id()){
+            return redirect('/');
+        }
+        return view('posts.edit',['post' => $post]);
+    }
+
+    public function update(PostRequest $request,$id){
+
+        $post = Post::findOrFail($id);
+
+        if ($post->user_id !== Auth::id()) {
+            return redirect('/');
+        }
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        $post->save();
+
+        return redirect('/');
+    }
 }
+
